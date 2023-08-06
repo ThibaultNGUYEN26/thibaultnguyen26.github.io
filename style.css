@@ -1,3 +1,13 @@
+img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	z-index: -1;
+}
+
 .until {
 	margin: 25px;
 	max-width: 500px;
@@ -5,22 +15,23 @@
 	grid-template-columns: repeat(4, 1fr);
 	gap: 1em;
 	padding: 1em;
-	background: #04ad8b;
+	background: #ad04ad;
 	border-radius: 5px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 	font-family: sans-serif;
+	margin-top: 20em;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 .until_component {
 	text-align: center;
-	background: #ffffff;
+	background: #252424;
 	border-radius: 5px;
 }
 
 .until__numeric {
-	color: #333333;
+	color: #b8b5b5;
 	padding: 0.5em 0;
 	font-size: 3em;
 	font-weight: bold;
@@ -30,7 +41,7 @@
 	font-size: 1.2em;
 	padding-bottom: 1em;
 	font-weight: bold;
-	color: #d96004;
+	color: #3230cf;
 }
 
 .until__event {
