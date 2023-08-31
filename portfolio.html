@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Portfolio Thibault Nguyen</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<div class="container nav">
+			<a class="nav-index" href="index.html">HOME</a>
+			<a class="nav-portfolio active" href="portfolio.html">PORTFOLIO</a>
+			<a class="nav-about" href="about.html">ABOUT</a>
+			<a class="nav-contact" href="contact.html">CONTACT</a>
+		</div>
+	</header>
+	<section>
+		<button onclick="topFunction()" id="myBtn" title="Go to top" style="--g: 20px;--b:5px;"><i class="arrow"></i></button>
+		<h1 class="projectTitle">42 Projects</h1>
+		<div class="intro">
+			<p>These are my projects from Ecole 42 Nice! You can find the project details along with a description and the grade obtained here.<br>You can find all the codes on my GitHub page !</p>
+		</div>
+		<div class="separator"></div>
+
+		<div class="projectDivLeft">
+			<div class="projectLeft">
+				<div class="titleProjectLeft">
+					<h1>Minishell</h1>
+					<div class="grade">?/100</div>
+				</div>
+				<p class="descriptionProjetLeft">The "minishell" project focuses on creating a simplified shell, which is a command-line interface allowing users to interact with the operating system. We had to develop a program that reads and executes commands, handles basic shell functionalities like environment variables and signal handling, and supports various built-in commands. This project evaluates our grasp of system calls, process management, and string manipulation, providing hands-on experience in designing a functional and efficient shell for basic command-line interactions.</p>
+			</div>
+			<div class="videoProjectRight">
+				<video class="videoRight" width="320" height="240" autoplay loop muted>
+					<source src="src/projectsVideos/" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+		<div class="separator"></div>
+
+		<div class="projectDivRight">
+			<div class="videoProjectLeft">
+				<video class="videoLeft" width="320" height="240" autoplay loop muted>
+					<source src="src/projectsVideos/philo.mp4" type="video/mp4" />
+				</video>
+			</div>
+			<div class="projectRight">
+				<div class="titleProjectRight">
+					<h1>Philosophers</h1>
+					<div class="grade">100/100</div>
+				</div>
+				<p class="descriptionProjetRight">The "philosophers" project centers on the dining philosophers problem, exploring synchronization in concurrent programming. I had to create a program where multiple philosopher threads compete for shared resources (forks) while avoiding deadlocks and ensuring fair access. This project evaluates our ability to manage resources, implement synchronization mechanisms like mutexes, and tackle challenges in multithreaded environments, providing hands-on experience in concurrent programming complexities.</p>
+			</div>
+		</div>
+		<div class="separator"></div>
+
+		<div class="projectDivLeft">
+			<div class="projectLeft">
+				<div class="titleProjectLeft">
+					<h1>Fdf</h1>
+					<div class="grade">125/100</div>
+				</div>
+				<p class="descriptionProjetLeft">The "fdf" project at involves creating a 3D wireframe graphical representation of terrain maps. I had to develop a program that reads map data, constructs a visual grid, and projects it onto a 2D plane to simulate elevation. This project assesses our skills in parsing, graphics rendering, and spatial transformations, offering practical experience in visualizing data and handling graphical tasks.</p>
+			</div>
+			<div class="videoProjectRight">
+				<video class="videoRight" width="320" height="240" autoplay loop muted>
+					<source src="src/projectsVideos/" type="video/mp4"/>
+				</video>
+			</div>
+		</div>
+		<div class="separator"></div>
+
+		<div class="projectDivRight">
+			<div class="videoProjectLeft">
+				<video class="videoLeft" width="320" height="240" autoplay loop muted>
+					<source src="src/projectsVideos/minitalk.mp4" type="video/mp4" />
+				</video>
+			</div>
+			<div class="projectRight">
+				<div class="titleProjectRight">
+					<h1>Minitalk</h1>
+					<div class="grade">125/100</div>
+				</div>
+				<p class="descriptionProjetRight">The "minitalk" project focuses on interprocess communication through signal handling in a UNIX environment. I had to develop a program that allows two processes to exchange messages using custom signals, demonstrating our understanding of signals, binary encoding, and synchronization. This project evaluates our grasp of low-level system operations, communication protocols, and complex programming details in a real situation.</p>
+			</div>
+		</div>
+		<div class="separator"></div>
+
+		<div class="projectDivLeft">
+			<div class="projectLeft">
+				<div class="titleProjectLeft">
+					<h1>Push_swap</h1>
+					<div class="grade">125/100</div>
+				</div>
+				<p class="descriptionProjetLeft">The "push_swap" project involves sorting integers using two stacks and limited operations. I had to create a program that takes unordered integers, rearranging them in ascending order while optimizing operations. This assesses our algorithmic skills, data manipulation, and low-level programming concepts, providing practical sorting and optimization experience.</p>
+			</div>
+			<div class="videoProjectRight">
+				<video class="videoRight" width="320" height="240" autoplay loop muted>
+					<source src="src/projectsVideos/pushSwap.mp4" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+		<div class="separator"></div>
+
+		<div class="projectDivRight">
+			<div class="videoProjectLeft">
+				<img class="videoLeft" src="src/projectsVideos/born2beroot.png" alt="born2beroot" width="320" height="240">
+			</div>
+			<div class="projectRight">
+				<div class="titleProjectRight">
+					<h1>Born2beroot</h1>
+					<div class="grade">125/100</div>
+				</div>
+				<p class="descriptionProjetRight">The "born2beroot" project focuses on setting up a secure and functional Virtual Machine (VM) running a Linux distribution. I had to configure various aspects of the system, including user management, firewall setup, and system monitoring. This project assesses our ability to handle system administration tasks, security measures, and VM configuration, providing hands-on experience in creating and maintaining a secure computing environment.</p>
+			</div>
+		</div>
+		<div class="separator"></div>
+
+		<div class="projectDivLeft">
+			<div class="projectLeft">
+				<div class="titleProjectLeft">
+					<h1>Get_next_line</h1>
+					<div class="grade">125/100</div>
+				</div>
+				<p class="descriptionProjetLeft">The "get_next_line" project revolves around creating a function that reads and returns lines from a file descriptor, one line at a time. I had to develop a program that efficiently handles reading and memory allocation, allowing sequential extraction of lines from files. This project evaluates our proficiency in file manipulation, memory management, and handling edge cases, offering practical experience in dealing with input/output operations in a structured manner.</p>
+			</div>
+			<div class="videoProjectRight">
+				<video class="videoRight" width="320" height="240" autoplay loop muted>
+					<source src="src/projectsVideos/get_next_line.mp4" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+		<div class="separator"></div>
+
+		<div class="projectDivRight">
+			<div class="videoProjectLeft">
+				<video class="videoLeft" width="320" height="240" autoplay loop muted>
+					<source src="src/projectsVideos/" type="video/mp4" />
+				</video>
+			</div>
+			<div class="projectRight">
+				<div class="titleProjectRight">
+					<h1>Ft_printf</h1>
+					<div class="grade">100/100</div>
+				</div>
+				<p class="descriptionProjetRight">The "ft_printf" project involves creating a custom implementation of the printf function in C, allowing formatted output to various types of data. I had to develop a program that handles formatting specifiers, conversions, and output to the console. This project evaluates our understanding of string manipulation, parsing, and data formatting, offering practical experience in designing a versatile and customizable output function for diverse programming needs.</p>
+			</div>
+		</div>
+		<div class="separator"></div>
+
+		<div class="projectDivLeft">
+			<div class="projectLeft">
+				<div class="titleProjectLeft">
+					<h1>Libft</h1>
+					<div class="grade">125/100</div>
+				</div>
+				<p class="descriptionProjetLeft">The "Libft" project entails building a custom C library containing fundamental functions that replicate standard library functions. I had to develop a collection of utility functions spanning areas like string manipulation, memory management, and linked list operations. This project assesses our grasp of programming concepts, algorithm implementation, and software design, providing hands-on experience in creating a foundation for future programming tasks with a self-made library.</p>
+			</div>
+			<div class="videoProjectRight">
+				<video class="videoRight" width="320" height="240" autoplay loop muted>
+					<source src="src/projectsVideos/libft.mp4" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+		<div class="separator"></div>
+
+		<h1 class="projectTitle">Personnal Projects</h1>
+	</section>
+	<footer></footer>
+	<script src="script.js"></script>
+</body>
+</html>
