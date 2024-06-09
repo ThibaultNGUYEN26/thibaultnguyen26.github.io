@@ -1,0 +1,293 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #0b1553;
+    color: white;
+}
+
+.play-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.title {
+    font-size: 4em;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.play-button {
+    width: 200px;
+    font-size: 2em;
+    padding: 20px 40px;
+    text-align: center;
+    background-color: #ffcc00;
+    border: none;
+    color: #0b1553;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center;
+}
+
+.score-container {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: repeat(5, 100px);
+    gap: 10px;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    background-color: #a8a8a8;
+    border: none;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    position: relative;
+}
+
+button.correct {
+    background-color: #0b1553;
+}
+
+button.incorrect {
+    background-color: black;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px solid transparent;
+}
+
+button:hover::before {
+    border-color: #ff0000;
+}
+
+.unique-button:hover::before {
+    border-radius: 20px;
+    border-color: rgb(42, 163, 179);
+}
+
+.restart-button {
+    width: 200px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.5em;
+    background-color: #ffcc00;
+    color: #0b1553;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.restart-button:hover::before {
+    border-radius: 20px;
+    border-color: rgb(42, 163, 179);
+}
+
+.game-over {
+    font-size: 4em;
+    color: red;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small devices (phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .title {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+
+    .play-button {
+        width: 150px;
+        font-size: 1.5em;
+        padding: 15px 30px;
+    }
+
+    .score-container {
+        width: 250px;
+        font-size: 1.2em;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(5, 60px);
+        grid-template-rows: repeat(5, 60px);
+        gap: 5px;
+    }
+
+    button {
+        width: 60px;
+        height: 60px;
+    }
+
+    .game-over {
+        font-size: 2.5em;
+    }
+
+    .restart-button {
+        width: 150px;
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .title {
+        font-size: 3em;
+        margin-bottom: 40px;
+    }
+
+    .play-button {
+        width: 180px;
+        font-size: 1.8em;
+        padding: 18px 36px;
+    }
+
+    .score-container {
+        width: 280px;
+        font-size: 1.4em;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(5, 80px);
+        grid-template-rows: repeat(5, 80px);
+        gap: 8px;
+    }
+
+    button {
+        width: 80px;
+        height: 80px;
+    }
+
+    .game-over {
+        font-size: 3em;
+    }
+
+    .restart-button {
+        width: 180px;
+        font-size: 1.4em;
+        padding: 12px 24px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .title {
+        font-size: 3.5em;
+        margin-bottom: 45px;
+    }
+
+    .play-button {
+        width: 190px;
+        font-size: 1.9em;
+        padding: 19px 38px;
+    }
+
+    .score-container {
+        width: 290px;
+        font-size: 1.5em;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(5, 90px);
+        grid-template-rows: repeat(5, 90px);
+        gap: 9px;
+    }
+
+    button {
+        width: 90px;
+        height: 90px;
+    }
+
+    .game-over {
+        font-size: 3.5em;
+    }
+
+    .restart-button {
+        width: 190px;
+        font-size: 1.5em;
+        padding: 13px 26px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .title {
+        font-size: 4em;
+        margin-bottom: 50px;
+    }
+
+    .play-button {
+        width: 200px;
+        font-size: 2em;
+        padding: 20px 40px;
+    }
+
+    .score-container {
+        width: 300px;
+        font-size: 1.5em;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(5, 100px);
+        grid-template-rows: repeat(5, 100px);
+        gap: 10px;
+    }
+
+    button {
+        width: 100px;
+        height: 100px;
+    }
+
+    .game-over {
+        font-size: 4em;
+    }
+
+    .restart-button {
+        width: 200px;
+        font-size: 1.5em;
+        padding: 15px 30px;
+    }
+}

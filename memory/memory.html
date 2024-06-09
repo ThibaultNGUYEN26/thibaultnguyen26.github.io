@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Game</title>
+    <link rel="stylesheet" href="/memory/style.css">
+</head>
+<body>
+    <div class="play-button-container">
+        <div class="title">Memory Game</div>
+        <button id="playButton" class="play-button unique-button">Play</button>
+    </div>
+    <div class="game-container" style="display: none;">
+        <div class="score-container">
+            <div>Score: <span id="score">0</span></div>
+            <div>Best Score: <span id="bestScore">0</span></div>
+        </div>
+        <div class="grid-container"></div>
+        <div id="overlay" class="overlay" style="display: none;">
+            <h1 id="gameOver" class="game-over">GAME OVER!</h1>
+            <button id="restartButton" class="restart-button">Restart</button>
+        </div>
+    </div>
+    <script src="/memory/script.js"></script>
+</body>
+</html>
