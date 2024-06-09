@@ -135,59 +135,19 @@ button:hover::before {
 /* Small devices (phones, less than 768px) */
 @media (max-width: 767.98px) {
     .title {
-        font-size: 2.5em;
-        margin-bottom: 30px;
-    }
-
-    .play-button {
-        width: 150px;
-        font-size: 1.5em;
-        padding: 15px 30px;
-    }
-
-    .score-container {
-        width: 250px;
-        font-size: 1.2em;
-    }
-
-    .grid-container {
-        grid-template-columns: repeat(5, 60px);
-        grid-template-rows: repeat(5, 60px);
-        gap: 5px;
-    }
-
-    button {
-        width: 60px;
-        height: 60px;
-    }
-
-    .game-over {
-        font-size: 2.5em;
-    }
-
-    .restart-button {
-        width: 150px;
-        font-size: 1.2em;
-        padding: 10px 20px;
-    }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .title {
         font-size: 3em;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
 
     .play-button {
         width: 180px;
         font-size: 1.8em;
-        padding: 18px 36px;
+        padding: 15px 30px;
     }
 
     .score-container {
-        width: 280px;
-        font-size: 1.4em;
+        width: 270px;
+        font-size: 1.3em;
     }
 
     .grid-container {
@@ -199,6 +159,7 @@ button:hover::before {
     button {
         width: 80px;
         height: 80px;
+        font-size: 0.9em;
     }
 
     .game-over {
@@ -207,6 +168,46 @@ button:hover::before {
 
     .restart-button {
         width: 180px;
+        font-size: 1.3em;
+        padding: 10px 20px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .title {
+        font-size: 3.5em;
+        margin-bottom: 40px;
+    }
+
+    .play-button {
+        width: 190px;
+        font-size: 1.9em;
+        padding: 18px 36px;
+    }
+
+    .score-container {
+        width: 280px;
+        font-size: 1.4em;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(5, 90px);
+        grid-template-rows: repeat(5, 90px);
+        gap: 9px;
+    }
+
+    button {
+        width: 90px;
+        height: 90px;
+    }
+
+    .game-over {
+        font-size: 3.5em;
+    }
+
+    .restart-button {
+        width: 190px;
         font-size: 1.4em;
         padding: 12px 24px;
     }
