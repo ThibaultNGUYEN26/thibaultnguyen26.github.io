@@ -4,7 +4,7 @@ function submitUsername() {
     const username = document.getElementById('username').value;
     if (username) {
         // Send the username to the server
-        fetch('/set_username', {
+        fetch('https://abcdefgh1234.ngrok.io/set_username', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,14 +28,14 @@ function submitUsername() {
 }
 
 function playAudio() {
-    fetch('/play_audio')
+    fetch('https://abcdefgh1234.ngrok.io/play_audio')
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
 }
 
 function stopAudio() {
-    fetch('/stop_audio')
+    fetch('https://abcdefgh1234.ngrok.io/stop_audio')
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
@@ -46,7 +46,7 @@ function startEventSource() {
         eventSource.close();
     }
 
-    eventSource = new EventSource('/events');
+    eventSource = new EventSource('https://abcdefgh1234.ngrok.io/events');
     eventSource.onmessage = function (event) {
         const usernames = JSON.parse(event.data);
         const welcomeMessages = document.getElementById('welcome-messages');
