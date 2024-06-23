@@ -1,4 +1,4 @@
-NGROK_URL = 'https://43ae-62-129-8-171.ngrok-free.app';
+const NGROK_URL = 'https://43ae-62-129-8-171.ngrok-free.app'; // Update this URL each time you restart ngrok
 
 let eventSource = null;
 
@@ -35,6 +35,8 @@ async function playAudio() {
     try {
         const response = await fetch(`${NGROK_URL}/play_audio`);
         if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Error response text:', errorText);
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
@@ -48,6 +50,8 @@ async function stopAudio() {
     try {
         const response = await fetch(`${NGROK_URL}/stop_audio`);
         if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Error response text:', errorText);
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
