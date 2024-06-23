@@ -3,7 +3,7 @@ let eventSource = null;
 function submitUsername() {
     const username = document.getElementById('username').value;
     if (username) {
-        fetch('https://b2b6-62-129-8-171.ngrok-free.app/set_username', {
+        fetch('https://43ae-62-129-8-171.ngrok-free.app/set_username', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function submitUsername() {
 }
 
 function playAudio() {
-    fetch('https://b2b6-62-129-8-171.ngrok-free.app/play_audio')
+    fetch('https://43ae-62-129-8-171.ngrok-free.app/play_audio')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -45,7 +45,7 @@ function playAudio() {
 }
 
 function stopAudio() {
-    fetch('https://b2b6-62-129-8-171.ngrok-free.app/stop_audio')
+    fetch('https://43ae-62-129-8-171.ngrok-free.app/stop_audio')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -61,7 +61,7 @@ function startEventSource() {
         eventSource.close();
     }
 
-    eventSource = new EventSource('https://b2b6-62-129-8-171.ngrok-free.app/events');
+    eventSource = new EventSource('https://43ae-62-129-8-171.ngrok-free.app/events');
     eventSource.onmessage = function (event) {
         const usernames = JSON.parse(event.data);
         const welcomeMessages = document.getElementById('welcome-messages');
