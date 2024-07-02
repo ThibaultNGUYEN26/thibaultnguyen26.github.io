@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // Restore the session state if available
     const username = sessionStorage.getItem('username');
@@ -76,6 +77,7 @@ function showAdminPanel() {
     document.getElementById('loginPanel').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
     updateUserList();
+    setInterval(checkForUpdates, 2000); // Check for updates every 2 seconds
 }
 
 function showUserPanel(username) {
@@ -118,6 +120,10 @@ function updateUserList() {
         userListElement.appendChild(li);
     });
     console.log('Updated User List:', userList); // Debugging: Print the user list to the console
+}
+
+function checkForUpdates() {
+    updateUserList(); // Simply update the user list every interval
 }
 
 function showPanelBasedOnUser(username) {
