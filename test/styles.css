@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('src/background.jpg'); /* Replace with the path to your image */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.login, .admin, .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent; /* Set background to black with 25% opacity */
+    padding: 20px;
+    border: solid 2px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.input-container {
+    position: relative;
+    width: 100%; /* Ensure the container takes the full width of the login div */
+    display: flex;
+    justify-content: center; /* Center the input within the container */
+}
+
+#usernameInput, #passwordInput {
+    width: 80%; /* Ensure the input takes the full width of the container */
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-right: 40px; /* Make room for the icon */
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    background: transparent;
+    color: white;
+}
+
+.input-container i {
+    position: absolute;
+    right: 10%;
+    top: 45%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    color: white;
+}
+
+#submitButton, #notifyButton {
+    font-size: 1.5em;
+    padding: 10px 20px;
+    border: none;
+    background-image: linear-gradient(to bottom right, purple, blue);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#submitButton:hover, #notifyButton:hover {
+    background-image: linear-gradient(to bottom right, darkviolet, darkblue);
+}
+
+::placeholder {
+    color: rgb(211, 211, 211); /* Set your desired placeholder color */
+}
+
+#usernameInput::placeholder, #passwordInput::placeholder {
+    color: rgb(211, 211, 211); /* Set your desired placeholder color */
+}
+
+#error-message {
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+#adminPanel ul {
+    list-style-type: none;
+    padding: 0;
+}
