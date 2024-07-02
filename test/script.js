@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Restore the session state if available
-    const username = sessionStorage.getItem('username');
+    const username = localStorage.getItem('username');
     if (username) {
         showPanelBasedOnUser(username);
     }
@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('beforeunload', () => {
     // Clear session storage on tab close
-    sessionStorage.clear();
+    const username = localStorage.getItem('username');
+    if (username) {
+        removeUser(username);
+    }
 });
 
 function checkUsername() {
@@ -55,7 +58,7 @@ function submitUsername() {
 
     if (usernameInput === 'abruti') {
         if (passwordInput === 'martinloan479') {
-            sessionStorage.setItem('username', 'abruti');
+            localStorage.setItem('username', 'abruti');
             errorMessage.textContent = 'Successfully logged in!';
             errorMessage.style.color = 'green';
             showAdminPanel();
@@ -64,7 +67,7 @@ function submitUsername() {
             errorMessage.style.color = 'red';
         }
     } else {
-        sessionStorage.setItem('username', usernameInput);
+        localStorage.setItem('username', usernameInput);
         errorMessage.textContent = 'Successfully logged in!';
         errorMessage.style.color = 'green';
         showUserPanel(usernameInput);
@@ -86,26 +89,22 @@ function showUserPanel(username) {
 }
 
 function notifyAdmin(username) {
-    let userList = JSON.parse(sessionStorage.getItem('userList')) || [];
-    let userStatus = JSON.parse(sessionStorage.getItem('userStatus')) || {};
+    let userList = JSON.parse(localStorage.getItem('userList')) || [];
+    let userStatus = JSON.parse(localStorage.getItem('userStatus')) || {};
 
     if (!userList.includes(username)) {
         userList.push(username);
-        userStatus[username] = false; // Default status is false (not notified)
+        userStatus[username] = true; // Mark the user as connected
     }
 
-    if (username !== 'abruti') {
-        userStatus[username] = true; // Mark the user as notified
-    }
-
-    sessionStorage.setItem('userList', JSON.stringify(userList));
-    sessionStorage.setItem('userStatus', JSON.stringify(userStatus));
+    localStorage.setItem('userList', JSON.stringify(userList));
+    localStorage.setItem('userStatus', JSON.stringify(userStatus));
     updateUserList();
 }
 
 function updateUserList() {
-    const userList = JSON.parse(sessionStorage.getItem('userList')) || [];
-    const userStatus = JSON.parse(sessionStorage.getItem('userStatus')) || {};
+    const userList = JSON.parse(localStorage.getItem('userList')) || [];
+    const userStatus = JSON.parse(localStorage.getItem('userStatus')) || {};
     const userListElement = document.getElementById('userList');
     userListElement.innerHTML = '';
 
@@ -131,4 +130,15 @@ function showPanelBasedOnUser(username) {
     } else {
         showUserPanel(username);
     }
+}
+
+function removeUser(username) {
+    let userList = JSON.parse(localStorage.getItem('userList')) || [];
+    let userStatus = JSON.parse(localStorage.getItem('userStatus')) || {};
+
+    userList = userList.filter(user => user !== username);
+    delete userStatus[username];
+
+    localStorage.setItem('userList', JSON.stringify(userList));
+    localStorage.setItem('userStatus', JSON.stringify(userStatus));
 }
