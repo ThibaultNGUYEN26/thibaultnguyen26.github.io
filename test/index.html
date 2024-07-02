@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enter Username</title>
+    <title>Cacophonie Buzzer</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
-    <div id="username-container">
-        <label for="username">Enter your username:</label>
-        <input type="text" id="username" name="username">
-        <button onclick="submitUsername()">Submit</button>
+    <div class="login" id="loginPanel">
+        <div class="input-container">
+            <input type="text" id="usernameInput" placeholder="Username" oninput="checkUsername()" maxlength="15" autofocus>
+            <i class="bx bxs-user"></i>
+        </div>
+        <div class="input-container" id="passwordContainer"></div>
+        <button id="submitButton" onclick="submitUsername()">Submit</button>
+        <div id="error-message" style="color: red; margin-top: 10px;"></div> <!-- Error message container -->
     </div>
+    
+    <div class="admin" id="adminPanel" style="display: none;">
+        <h1>Welcome, abruti</h1>
+        <p>Users connected:</p>
+        <ul id="userList"></ul>
+    </div>
+
+    <div class="user" id="userPanel" style="display: none;">
+        <button id="notifyButton" onclick="notifyAdmin()">Notify Admin</button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
