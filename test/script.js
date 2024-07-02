@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     // Restore the session state if available
     const username = sessionStorage.getItem('username');
