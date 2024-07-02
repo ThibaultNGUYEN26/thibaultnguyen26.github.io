@@ -1,84 +1,112 @@
-const NGROK_URL = 'https://43ae-62-129-8-171.ngrok-free.app'; // Update this URL each time you restart ngrok
-
-let eventSource = null;
-
-async function submitUsername() {
-    const username = document.getElementById('username').value;
+document.addEventListener('DOMContentLoaded', () => {
+    // Restore the session state if available
+    const username = sessionStorage.getItem('username');
     if (username) {
-        try {
-            const response = await fetch(`${NGROK_URL}/set_username`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username: username }),
-            });
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            await response.text();
-            const mainResponse = await fetch('main.html');
-            const html = await mainResponse.text();
-            document.open();
-            document.write(html);
-            document.close();
-            startEventSource();
-        } catch (error) {
-            console.error('Error:', error);
+        showPanelBasedOnUser(username);
+    }
+});
+
+window.addEventListener('beforeunload', () => {
+    // Clear session storage on tab close
+    sessionStorage.clear();
+});
+
+function checkUsername() {
+    const usernameInput = document.getElementById('usernameInput').value;
+    const passwordContainer = document.getElementById('passwordContainer');
+
+    if (usernameInput === 'abruti') {
+        if (!document.getElementById('passwordInput')) {
+            const passwordInput = document.createElement('input');
+            passwordInput.type = 'password';
+            passwordInput.id = 'passwordInput';
+            passwordInput.placeholder = 'Password';
+
+            const lockIcon = document.createElement('i');
+            lockIcon.className = 'bx bxs-lock-alt';
+            lockIcon.style.position = 'absolute';
+            lockIcon.style.right = '10%';
+            lockIcon.style.top = '45%';
+            lockIcon.style.transform = 'translateY(-50%)';
+            lockIcon.style.fontSize = '1.5em';
+            lockIcon.style.color = 'white';
+
+            passwordContainer.appendChild(passwordInput);
+            passwordContainer.appendChild(lockIcon);
+            passwordContainer.classList.add('input-container');
         }
     } else {
-        alert('Please enter a username');
-    }
-}
-
-async function playAudio() {
-    try {
-        const response = await fetch(`${NGROK_URL}/play_audio`);
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Error response text:', errorText);
-            throw new Error('Network response was not ok');
+        const passwordInput = document.getElementById('passwordInput');
+        const lockIcon = passwordContainer.querySelector('i.bx.bxs-lock-alt');
+        if (passwordInput) {
+            passwordContainer.removeChild(passwordInput);
+            passwordContainer.classList.remove('input-container');
         }
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-async function stopAudio() {
-    try {
-        const response = await fetch(`${NGROK_URL}/stop_audio`);
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Error response text:', errorText);
-            throw new Error('Network response was not ok');
+        if (lockIcon) {
+            passwordContainer.removeChild(lockIcon);
         }
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        console.error('Error:', error);
     }
 }
 
-async function startEventSource() {
-    if (eventSource) {
-        eventSource.close();
-    }
+function submitUsername() {
+    const usernameInput = document.getElementById('usernameInput').value;
+    const passwordInput = document.getElementById('passwordInput') ? document.getElementById('passwordInput').value : '';
+    const errorMessage = document.getElementById('error-message');
 
-    eventSource = new EventSource(`${NGROK_URL}/events`);
-    eventSource.onmessage = function (event) {
-        const usernames = JSON.parse(event.data);
-        const welcomeMessages = document.getElementById('welcome-messages');
-        if (welcomeMessages) {
-            welcomeMessages.innerHTML = '';
-            usernames.forEach(username => {
-                const message = document.createElement('div');
-                message.textContent = `Welcome, ${username}!`;
-                welcomeMessages.appendChild(message);
-            });
+    if (usernameInput === 'abruti') {
+        if (passwordInput === 'martinloan479') {
+            sessionStorage.setItem('username', 'abruti');
+            errorMessage.textContent = 'Successfully logged in!';
+            errorMessage.style.color = 'green';
+            showAdminPanel();
+        } else {
+            errorMessage.textContent = 'Invalid password for abruti.';
+            errorMessage.style.color = 'red';
         }
-    };
+    } else {
+        sessionStorage.setItem('username', usernameInput);
+        errorMessage.textContent = 'Successfully logged in!';
+        errorMessage.style.color = 'green';
+        showUserPanel(usernameInput);
+    }
 }
 
-document.addEventListener('DOMContentLoaded', init);
+function showAdminPanel() {
+    document.getElementById('loginPanel').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    updateUserList();
+}
+
+function showUserPanel(username) {
+    document.getElementById('loginPanel').style.display = 'none';
+    document.getElementById('userPanel').style.display = 'block';
+    notifyAdmin(username);
+}
+
+function notifyAdmin(username) {
+    let userList = JSON.parse(sessionStorage.getItem('userList')) || [];
+    if (!userList.includes(username)) {
+        userList.push(username);
+        sessionStorage.setItem('userList', JSON.stringify(userList));
+        updateUserList();  // Ensure admin panel updates immediately
+    }
+}
+
+function updateUserList() {
+    const userList = JSON.parse(sessionStorage.getItem('userList')) || [];
+    const userListElement = document.getElementById('userList');
+    userListElement.innerHTML = '';
+    userList.forEach(user => {
+        const li = document.createElement('li');
+        li.textContent = user;
+        userListElement.appendChild(li);
+    });
+}
+
+function showPanelBasedOnUser(username) {
+    if (username === 'abruti') {
+        showAdminPanel();
+    } else {
+        showUserPanel(username);
+    }
+}
