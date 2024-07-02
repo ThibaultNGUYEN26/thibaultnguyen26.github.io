@@ -1,18 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize user list and status on page load
+    if (!localStorage.getItem('userList')) {
+        localStorage.setItem('userList', JSON.stringify([]));
+    }
+    if (!localStorage.getItem('userStatus')) {
+        localStorage.setItem('userStatus', JSON.stringify({}));
+    }
+
     // Restore the session state if available
-    const username = localStorage.getItem('username');
+    const username = sessionStorage.getItem('username');
     if (username) {
         showPanelBasedOnUser(username);
     }
+
+    // Listen for storage changes to sync across tabs
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'updateTrigger') {
+            updateUserList();
+        }
+    });
+
+    // Clean up invalid entries
+    cleanUpUserList();
 });
 
 window.addEventListener('beforeunload', () => {
     // Clear session storage on tab close
-    const username = localStorage.getItem('username');
+    const username = sessionStorage.getItem('username');
     if (username) {
         removeUser(username);
+        sessionStorage.removeItem('username');
     }
 });
+
+function cleanUpUserList() {
+    let userList = JSON.parse(localStorage.getItem('userList')) || [];
+    let userStatus = JSON.parse(localStorage.getItem('userStatus')) || {};
+
+    // Filter out any invalid or empty usernames
+    userList = userList.filter(user => user && user.trim().length > 0);
+    for (let user in userStatus) {
+        if (!userList.includes(user)) {
+            delete userStatus[user];
+        }
+    }
+
+    localStorage.setItem('userList', JSON.stringify(userList));
+    localStorage.setItem('userStatus', JSON.stringify(userStatus));
+    updateUserList();
+}
 
 function checkUsername() {
     const usernameInput = document.getElementById('usernameInput').value;
@@ -56,8 +92,17 @@ function submitUsername() {
     const passwordInput = document.getElementById('passwordInput') ? document.getElementById('passwordInput').value : '';
     const errorMessage = document.getElementById('error-message');
 
+    // Ensure only one user is logged in per tab
+    const currentSessionUser = sessionStorage.getItem('username');
+    if (currentSessionUser && currentSessionUser !== usernameInput) {
+        errorMessage.textContent = `You are already logged in as ${currentSessionUser}. Please log out first.`;
+        errorMessage.style.color = 'red';
+        return;
+    }
+
     if (usernameInput === 'abruti') {
         if (passwordInput === 'martinloan479') {
+            sessionStorage.setItem('username', 'abruti');
             localStorage.setItem('username', 'abruti');
             errorMessage.textContent = 'Successfully logged in!';
             errorMessage.style.color = 'green';
@@ -67,11 +112,12 @@ function submitUsername() {
             errorMessage.style.color = 'red';
         }
     } else {
+        sessionStorage.setItem('username', usernameInput);
         localStorage.setItem('username', usernameInput);
         errorMessage.textContent = 'Successfully logged in!';
         errorMessage.style.color = 'green';
         showUserPanel(usernameInput);
-        notifyAdmin(usernameInput); // Ensure the user is added to the list immediately
+        addUserToList(usernameInput); // Ensure the user is added to the list immediately
     }
 }
 
@@ -80,26 +126,65 @@ function showAdminPanel() {
     document.getElementById('adminPanel').style.display = 'block';
     updateUserList();
     setInterval(checkForUpdates, 2000); // Check for updates every 2 seconds
+
+    const disconnectButton = document.getElementById('adminDisconnectButton');
+    disconnectButton.addEventListener('click', () => {
+        const username = sessionStorage.getItem('username');
+        if (username) {
+            removeUser(username);
+            sessionStorage.removeItem('username');
+            localStorage.removeItem('username');
+            location.reload();
+        }
+    });
 }
 
 function showUserPanel(username) {
     document.getElementById('loginPanel').style.display = 'none';
     document.getElementById('userPanel').style.display = 'block';
-    notifyAdmin(username); // Ensure the user is added to the list immediately
+
+    const notifyButton = document.getElementById('notifyButton');
+    notifyButton.addEventListener('click', () => {
+        buzzUser(username);
+    });
+
+    const disconnectButton = document.getElementById('userDisconnectButton');
+    disconnectButton.addEventListener('click', () => {
+        const username = sessionStorage.getItem('username');
+        if (username) {
+            removeUser(username);
+            sessionStorage.removeItem('username');
+            localStorage.removeItem('username');
+            location.reload();
+        }
+    });
 }
 
-function notifyAdmin(username) {
+function addUserToList(username) {
     let userList = JSON.parse(localStorage.getItem('userList')) || [];
     let userStatus = JSON.parse(localStorage.getItem('userStatus')) || {};
 
     if (!userList.includes(username)) {
         userList.push(username);
-        userStatus[username] = true; // Mark the user as connected
+        userStatus[username] = false; // User has not buzzed yet
     }
 
     localStorage.setItem('userList', JSON.stringify(userList));
     localStorage.setItem('userStatus', JSON.stringify(userStatus));
     updateUserList();
+    // Trigger storage event across tabs
+    localStorage.setItem('updateTrigger', Date.now());
+}
+
+function buzzUser(username) {
+    let userStatus = JSON.parse(localStorage.getItem('userStatus')) || {};
+
+    userStatus[username] = true; // User buzzed
+
+    localStorage.setItem('userStatus', JSON.stringify(userStatus));
+    updateUserList();
+    // Trigger storage event across tabs
+    localStorage.setItem('updateTrigger', Date.now());
 }
 
 function updateUserList() {
@@ -141,4 +226,6 @@ function removeUser(username) {
 
     localStorage.setItem('userList', JSON.stringify(userList));
     localStorage.setItem('userStatus', JSON.stringify(userStatus));
+    // Trigger storage event across tabs
+    localStorage.setItem('updateTrigger', Date.now());
 }
