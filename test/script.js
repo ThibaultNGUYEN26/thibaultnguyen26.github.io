@@ -81,42 +81,34 @@ function showAdminPanel() {
 function showUserPanel(username) {
     document.getElementById('loginPanel').style.display = 'none';
     document.getElementById('userPanel').style.display = 'block';
+    notifyAdmin(username); // Ensure the user is added to the list immediately
 }
 
 function notifyAdmin(username) {
     let userList = JSON.parse(sessionStorage.getItem('userList')) || [];
-    let notifiedUsers = JSON.parse(sessionStorage.getItem('notifiedUsers')) || [];
     
     if (!userList.includes(username)) {
         userList.push(username);
         sessionStorage.setItem('userList', JSON.stringify(userList));
+        updateUserList();
     }
-    
-    if (!notifiedUsers.includes(username)) {
-        notifiedUsers.push(username);
-        sessionStorage.setItem('notifiedUsers', JSON.stringify(notifiedUsers));
-    }
-    
-    updateUserList();
 }
 
 function updateUserList() {
     const userList = JSON.parse(sessionStorage.getItem('userList')) || [];
-    const notifiedUsers = JSON.parse(sessionStorage.getItem('notifiedUsers')) || [];
     const userListElement = document.getElementById('userList');
     userListElement.innerHTML = '';
     
     userList.forEach(user => {
         const li = document.createElement('li');
         li.textContent = user;
-
         const dot = document.createElement('span');
         dot.className = 'status-dot';
-        dot.style.backgroundColor = notifiedUsers.includes(user) ? 'green' : 'gray';
+        dot.style.backgroundColor = 'gray';
         li.appendChild(dot);
-        
         userListElement.appendChild(li);
     });
+    console.log('Updated User List:', userList); // Debugging: Print the user list to the console
 }
 
 function showPanelBasedOnUser(username) {
