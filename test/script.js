@@ -86,25 +86,34 @@ function showUserPanel(username) {
 
 function notifyAdmin(username) {
     let userList = JSON.parse(sessionStorage.getItem('userList')) || [];
-    
+    let userStatus = JSON.parse(sessionStorage.getItem('userStatus')) || {};
+
     if (!userList.includes(username)) {
         userList.push(username);
-        sessionStorage.setItem('userList', JSON.stringify(userList));
-        updateUserList();
+        userStatus[username] = false; // Default status is false (not notified)
     }
+
+    if (username !== 'abruti') {
+        userStatus[username] = true; // Mark the user as notified
+    }
+
+    sessionStorage.setItem('userList', JSON.stringify(userList));
+    sessionStorage.setItem('userStatus', JSON.stringify(userStatus));
+    updateUserList();
 }
 
 function updateUserList() {
     const userList = JSON.parse(sessionStorage.getItem('userList')) || [];
+    const userStatus = JSON.parse(sessionStorage.getItem('userStatus')) || {};
     const userListElement = document.getElementById('userList');
     userListElement.innerHTML = '';
-    
+
     userList.forEach(user => {
         const li = document.createElement('li');
         li.textContent = user;
         const dot = document.createElement('span');
         dot.className = 'status-dot';
-        dot.style.backgroundColor = 'gray';
+        dot.style.backgroundColor = userStatus[user] ? 'green' : 'gray';
         li.appendChild(dot);
         userListElement.appendChild(li);
     });
