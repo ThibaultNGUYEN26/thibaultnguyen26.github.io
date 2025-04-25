@@ -49,12 +49,13 @@ body, html {
     box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.4);
     box-sizing: border-box;
     margin-top: 2rem;
+    aspect-ratio: 4 / 3; /* Maintain a 4:3 aspect ratio */
   }
 
   .sub-container {
     background-color: #1a1a1a;
     border-radius: 1.25em;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1; /* Maintain square ratio */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,7 +63,7 @@ body, html {
     box-shadow: 0 0.25em 0.625em rgba(0, 0, 0, 0.6);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
     padding: 0.5rem;
-	margin-top: 3rem;
+    margin-top: 3rem;
   }
 
   .sub-container:hover {
@@ -78,7 +79,7 @@ body, html {
     object-fit: contain;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-	border-radius: 1rem;
+    border-radius: 1rem;
   }
 
   .product-info {
@@ -155,11 +156,11 @@ body, html {
   @media (max-width: 48em) {
     .main-container {
       grid-template-columns: repeat(2, 1fr);
-	  width: 90%;
+	  width: 80%;
     }
 
 	.sub-container {
-		height: 60%;
+		height: auto;
 	}
 
 	.product-name {
