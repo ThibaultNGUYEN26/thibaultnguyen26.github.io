@@ -145,15 +145,20 @@
         }
         });
 
-        const topButton = document.querySelector('.top');
+		const topButton = document.querySelector('.top');
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 200) { // Show button after scrolling down 200px
-            topButton.classList.add('visible');
-            } else {
-            topButton.classList.remove('visible');
-            }
-        });
+		window.addEventListener('scroll', () => {
+			if (window.scrollY > 200) { // Show button after scrolling down 200px
+			topButton.classList.add('visible');
+			} else {
+			topButton.classList.remove('visible');
+			}
+		});
+
+		topButton.addEventListener('click', () => {
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+			topButton.classList.remove('visible'); // Make the button invisible after clicking
+		});
     </script>
 </body>
 </html>
