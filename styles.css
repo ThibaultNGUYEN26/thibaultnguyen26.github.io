@@ -1,0 +1,197 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  
+  .wishlist-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  
+  .wishlist-title {
+    font-size: 2rem;
+    background: #1a1a1a;
+    color: #ddd;
+    padding: 0.5em 1.5em;
+    border-radius: 999px;
+    margin: 0;
+    position: relative;
+    top: 2vh; /* push down slightly */
+    z-index: 2;
+    margin-top: 1em;
+    box-shadow: 0 0 12px 3px #ff6b00;
+    /* box-shadow: 0 0 0 0.15em #ff6b00, 0 0.25em 0.6em rgba(0, 0, 0, 0.6); */
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .main-container {
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25em;
+    width: 90%;
+    max-width: 56.25rem; /* 900px */
+    padding: 3.125em;
+    background-color: #0d0d0d;
+    border-radius: 1.5em;
+    box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .sub-container {
+    background-color: #1a1a1a;
+    border-radius: 1.25em;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0.25em 0.625em rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s ease;
+  }
+  
+  .sub-container:hover {
+    transform: translateY(-0.3125em);
+    box-shadow: 0 0 10px #ff6b00;
+  }
+  
+  .product-image {
+    height: 6rem;
+    object-fit: contain;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 1rem;
+  }
+  
+  .product-info {
+    text-align: center;
+  }
+  
+  .product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #262626;
+    padding: 0.375em 0.75em;
+    border-radius: 1.25em;
+    color: #fff;
+  }
+
+  .info-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .info-modal.hidden {
+    display: none;
+  }
+  
+  .info-content {
+    background-color: #1a1a1a;
+    padding: 2rem;
+    border-radius: 1rem;
+    color: white;
+    width: 80%;
+    margin: 0 5vw; /* adds space on left/right */
+    width: calc(100% - 10vw); /* 100% minus the margin */
+    max-width: 500px;
+    box-shadow: 0 0 10px #ff6b00;
+    position: relative;
+  }
+  
+  #close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  #close-modal:hover {
+    color: #ff6b00;
+  }
+  
+  .store-button {
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0.6em 1.2em;
+    background-color: #ff6b00;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.5em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .store-button:hover {
+    background-color: #e55d00;
+  }
+  
+
+  /* Mobile: 2 columns */
+  @media (max-width: 48em) { /* 768px */
+    .main-container {
+      grid-template-columns: repeat(2, 1fr);
+      width: 95%;
+      padding: 1.25em;
+      gap: 1em;
+      margin-bottom: 2.5em;
+    }
+  
+    .wishlist-title {
+      font-size: 1.6rem;
+      padding: 0.5em 1.25em;
+      margin-bottom: 1.25em;
+    }
+  
+    .product-image {
+      height: 7rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  
+    .product-name {
+      font-size: 1rem;
+      padding: 0.2em 0.625em;
+    }
+
+    .info-content {
+        width: 90%;
+        padding: 1.5rem;
+    }
+  }
+  
+  /* Extra small: 1 column */
+  @media (max-width: 30em) { /* 480px */
+    .main-container {
+      grid-template-columns: 1fr;
+      padding: 1em;
+      gap: 0.875em;
+      margin-bottom: 3.125em;
+    }
+  
+    .wishlist-title {
+      font-size: 1.4rem;
+    }
+  }
