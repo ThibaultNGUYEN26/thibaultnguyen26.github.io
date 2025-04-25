@@ -172,17 +172,6 @@ body, html {
 	}
   }
 
-  /* Extra small: still 2 columns but smaller */
-  @media (max-width: 30em) {
-    .main-container {
-      grid-template-columns: repeat(2, 1fr);
-      width: 90%;
-      padding: 1em;
-      gap: 0.75em;
-      margin-bottom: 2em;
-    }
-  }
-
   .top {
     position: fixed;
     bottom: 1.5rem;
