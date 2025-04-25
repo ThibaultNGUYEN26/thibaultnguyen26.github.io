@@ -158,18 +158,24 @@
 		const topButton = document.querySelector('.top');
 
 		window.addEventListener('scroll', () => {
-			if (window.scrollY > 200) { // Show button after scrolling down 200px
-				topButton.classList.add('visible');
-			} else {
-				topButton.classList.remove('visible');
-			}
+		if (window.scrollY > 200) {
+			topButton.classList.add('visible');
+		} else {
+			topButton.classList.remove('visible');
+		}
 		});
 
-		topButton.addEventListener('click', () => {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
-			setTimeout(() => {
-				topButton.classList.remove('visible'); // Make the button invisible after clicking
-			}, 300); // Delay to allow smooth scroll to complete
+		topButton.addEventListener('click', (e) => {
+		e.preventDefault(); // <-- Prevent default anchor behavior
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+
+		// Wait for scrolling to complete before hiding the button
+		const scrollCheck = setInterval(() => {
+			if (window.scrollY === 0) {
+			topButton.classList.remove('visible');
+			clearInterval(scrollCheck);
+			}
+		}, 50);
 		});
     </script>
 </body>
