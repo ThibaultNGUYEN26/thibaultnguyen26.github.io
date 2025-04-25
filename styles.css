@@ -19,8 +19,8 @@ body, html {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding-top: 4rem; /* Space for title */
-    padding-bottom: 3rem; /* Bottom gap */
+    padding-top: 1rem; /* reduce this value for smaller gap */
+    padding-bottom: 3rem;
   }
 
   .wishlist-title {
@@ -166,6 +166,7 @@ body, html {
 
 	.wishlist-title {
 		font-size: 1.3rem;
+		margin-top: 0;
 		padding: 0.3em 1em;
 	}
 
