@@ -13,7 +13,7 @@ body, html {
     -webkit-user-drag: none;
     scroll-behavior: smooth;
   }
-  
+
   .wishlist-wrapper {
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@ body, html {
     padding-top: 4rem; /* Space for title */
     padding-bottom: 3rem; /* Bottom gap */
   }
- 
+
   .wishlist-title {
     position: absolute;
     top: 2rem;
@@ -37,7 +37,7 @@ body, html {
     text-align: center;
     max-width: 90%;
   }
-  
+
   .main-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -51,7 +51,7 @@ body, html {
     margin-top: 2rem;
   }
 
-  
+
   .sub-container {
     background-color: #1a1a1a;
     border-radius: 1.25em;
@@ -63,13 +63,14 @@ body, html {
     box-shadow: 0 0.25em 0.625em rgba(0, 0, 0, 0.6);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
     padding: 0.5rem;
+	margin-top: 3rem;
   }
-  
+
   .sub-container:hover {
     transform: translateY(-0.3125em);
     box-shadow: 0 0 1em 0.25em #ff6b00;
   }
-  
+
   .product-image {
     max-width: 80%;
     max-height: 60%;
@@ -78,12 +79,13 @@ body, html {
     object-fit: contain;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+	border-radius: 1rem;
   }
-  
+
   .product-info {
     text-align: center;
   }
-  
+
   .product-name {
     font-size: clamp(0.75rem, 2vw, 1rem);
     font-weight: 600;
@@ -93,7 +95,7 @@ body, html {
     color: #fff;
     text-align: center;
   }
-  
+
   .info-modal {
     position: fixed;
     top: 0;
@@ -106,11 +108,11 @@ body, html {
     justify-content: center;
     z-index: 999;
   }
-  
+
   .info-modal.hidden {
     display: none;
   }
-  
+
   .info-content {
     background-color: #1a1a1a;
     padding: 2rem;
@@ -121,7 +123,7 @@ body, html {
     box-shadow: 0 0 1em 0.25em #ff6b00;
     position: relative;
   }
-  
+
   #close-modal {
     position: absolute;
     top: 1rem;
@@ -129,11 +131,11 @@ body, html {
     font-size: 1.5rem;
     cursor: pointer;
   }
-  
+
   #close-modal:hover {
     color: #ff6b00;
   }
-  
+
   .store-button {
     display: inline-block;
     margin-top: 1em;
@@ -145,11 +147,11 @@ body, html {
     font-weight: bold;
     transition: background-color 0.3s ease;
   }
-  
+
   .store-button:hover {
     background-color: #e55d00;
   }
-  
+
   /* Mobile: 2 columns */
   @media (max-width: 48em) {
     .main-container {
@@ -164,8 +166,12 @@ body, html {
     .wishlist-title {
         font-size: 1.5rem;
     }
+
+	.info-content {
+		transform: scale(0.8);
+	}
   }
-  
+
   /* Extra small: still 2 columns but smaller */
   @media (max-width: 30em) {
     .main-container {
@@ -199,7 +205,7 @@ body, html {
     opacity: 0.7;
     pointer-events: auto;
   }
-  
+
   .top:hover {
     transform: translateY(-0.3em);
     background-color: #e55d00;
