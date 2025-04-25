@@ -51,7 +51,6 @@ body, html {
     margin-top: 2rem;
   }
 
-
   .sub-container {
     background-color: #1a1a1a;
     border-radius: 1.25em;
@@ -156,7 +155,16 @@ body, html {
   @media (max-width: 48em) {
     .main-container {
       grid-template-columns: repeat(2, 1fr);
+	  width: 90%;
     }
+
+	.sub-container {
+		height: 60%;
+	}
+
+	.product-name {
+		font-weight: 300;
+	}
 
     .wishlist-title {
         font-size: 1.5rem;
