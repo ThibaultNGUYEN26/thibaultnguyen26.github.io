@@ -117,21 +117,31 @@
     <a href="#" class="top">▲</a>
 
     <script>
-        document.querySelectorAll('.sub-container').forEach(container => {
-            container.addEventListener('click', () => {
-            const title = container.getAttribute('data-title') || 'Product Title';
-            const description = container.getAttribute('data-description') || 'No description provided.';
-            const price = container.getAttribute('data-price') || '$0.00';
-            const link = container.getAttribute('data-link') || '#';
+		document.querySelectorAll('.sub-container').forEach(container => {
+			container.addEventListener('click', () => {
+			const title = container.getAttribute('data-title') || 'Product Title';
+			const description = container.getAttribute('data-description') || 'No description provided.';
+			const price = container.getAttribute('data-price') || '$0.00';
+			const link = container.getAttribute('data-link') || '#';
 
-            document.getElementById('modal-title').textContent = title;
-            document.getElementById('modal-description').textContent = description;
-            document.getElementById('modal-price').textContent = price;
-            document.getElementById('modal-link').href = link;
+			document.getElementById('modal-title').textContent = title;
+			document.getElementById('modal-description').textContent = description;
+			document.getElementById('modal-price').textContent = price;
 
-            document.getElementById('info-modal').classList.remove('hidden');
-            });
-        });
+			const modalLink = document.getElementById('modal-link');
+			if (link === '#') {
+				modalLink.classList.add('disabled');
+				modalLink.setAttribute('aria-disabled', 'true');
+				modalLink.removeAttribute('href');
+			} else {
+				modalLink.classList.remove('disabled');
+				modalLink.setAttribute('aria-disabled', 'false');
+				modalLink.href = link;
+			}
+
+			document.getElementById('info-modal').classList.remove('hidden');
+			});
+		});
 
         const modal = document.getElementById('info-modal');
         const closeModal = () => modal.classList.add('hidden');
