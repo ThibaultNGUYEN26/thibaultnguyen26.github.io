@@ -161,6 +161,7 @@ body, html {
 	.sub-container {
 		height: auto;
 		width: 80%;
+		margin-top: 1.5rem;
 	}
 
 	.wishlist-title {
