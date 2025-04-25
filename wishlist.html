@@ -13,7 +13,7 @@
             <div class="sub-container"
                 data-title="Yoyo Shutter"
                 data-description="High-performance yoyo for tricks and competitions (always wanted to learn)."
-                data-price="37,18€"
+                data-price="37.18€"
                 data-link="https://yoyofactory-europe.com/shop-en/shutter">
                 <img src="res/red_shutter.png" alt="Product Image" class="product-image">
                 <div class="product-info">
@@ -24,8 +24,8 @@
             <div class="sub-container"
                 data-title="Yoyo Shutter Splash"
                 data-description="The exact same yoyo as the Shutter but more colorful, more expensive (everything for the style)."
-                data-price="49,99€"
-                data-link="https://yoyofactory-europe.com/shop-en/shutter">
+                data-price="49.99€"
+                data-link="https://yoyofactory-europe.com/shop-en/shutter-splash">
                 <img src="res/shutter_splash.png" alt="Product Image" class="product-image">
                 <div class="product-info">
                     <p class="product-name">Yoyo Shutter Splash</p>
@@ -88,8 +88,11 @@
               <p id="modal-price" style="font-weight: bold; color: #ff6b00;">$0.00</p>
               <a id="modal-link" href="#" target="_blank" class="store-button">Go to Store</a>
             </div>
-        </div>     
+        </div>  
+        
     </div>
+    <a href="#" class="top">▲</a>
+
     <script>
         document.querySelectorAll('.sub-container').forEach(container => {
             container.addEventListener('click', () => {
@@ -119,6 +122,15 @@
         }
         });
 
+        const topButton = document.querySelector('.top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) { // Show button after scrolling down 200px
+            topButton.classList.add('visible');
+            } else {
+            topButton.classList.remove('visible');
+            }
+        });
     </script>
 </body>
 </html>

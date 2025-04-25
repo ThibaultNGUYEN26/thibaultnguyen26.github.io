@@ -1,4 +1,4 @@
-body {
+body, html {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -11,6 +11,7 @@ body {
     overflow-y: auto;
     user-select: none;
     -webkit-user-drag: none;
+    scroll-behavior: smooth;
   }
   
   .wishlist-wrapper {
@@ -157,7 +158,7 @@ body {
       padding: 1.5em;
       gap: 1em;
       margin-bottom: 2.5em;
-      padding-top: 5em;
+      padding-top: 3em;
     }
 
     .wishlist-title {
@@ -174,8 +175,33 @@ body {
       gap: 0.75em;
       margin-bottom: 2em;
     }
+  }
 
-    .wishlist-title {
-        font-size: 1rem;
-    }
+  .top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.6em 1em;
+    background-color: #ff6b00;
+    color: #fff;
+    border-radius: 0.5em;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: sans-serif;
+    box-shadow: 0 0.3em 0.8em rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  .top.visible {
+    opacity: 0.7;
+    pointer-events: auto;
+  }
+  
+  .top:hover {
+    transform: translateY(-0.3em);
+    background-color: #e55d00;
+    opacity: 1;
   }
