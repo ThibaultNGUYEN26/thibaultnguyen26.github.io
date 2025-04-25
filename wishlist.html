@@ -159,15 +159,17 @@
 
 		window.addEventListener('scroll', () => {
 			if (window.scrollY > 200) { // Show button after scrolling down 200px
-			topButton.classList.add('visible');
+				topButton.classList.add('visible');
 			} else {
-			topButton.classList.remove('visible');
+				topButton.classList.remove('visible');
 			}
 		});
 
 		topButton.addEventListener('click', () => {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
-			topButton.classList.remove('visible'); // Make the button invisible after clicking
+			setTimeout(() => {
+				topButton.classList.remove('visible'); // Make the button invisible after clicking
+			}, 300); // Delay to allow smooth scroll to complete
 		});
     </script>
 </body>
