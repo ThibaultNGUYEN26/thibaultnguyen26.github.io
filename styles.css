@@ -24,9 +24,9 @@ body, html {
   }
 
   .wishlist-title {
-    position: absolute;
+    position: relative;
     top: 2rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     background: #1a1a1a;
     color: #ddd;
     padding: 0.5em 1.5em;
@@ -48,7 +48,6 @@ body, html {
     border-radius: 1.5em;
     box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.4);
     box-sizing: border-box;
-    margin-top: 2rem;
     aspect-ratio: 4 / 3; /* Maintain a 4:3 aspect ratio */
   }
 
@@ -156,23 +155,16 @@ body, html {
   @media (max-width: 48em) {
     .main-container {
       grid-template-columns: repeat(2, 1fr);
-	  width: 80%;
+	  width: 90%;
     }
 
 	.sub-container {
 		height: auto;
 	}
 
-	.product-name {
-		font-weight: 300;
-	}
-
-    .wishlist-title {
-        font-size: 1.5rem;
-    }
-
-	.info-content {
-		transform: scale(0.8);
+	.wishlist-title {
+		font-size: 1.3rem;
+		padding: 0.3em 1em;
 	}
   }
 
